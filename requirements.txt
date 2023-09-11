@@ -1,0 +1,4 @@
+scrapy
+openai-whisper
+beautifulsoup4
+requests

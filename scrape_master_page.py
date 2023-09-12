@@ -13,9 +13,10 @@ MASTER_PAGE_URL = "https://aquinas101.thomisticinstitute.org/saint-and-scholar"
 
 # %%
 
+
 class MasterPage(Spider):
     name = "master_page"
-    
+
     def start_requests(self):
         urls = [
             MASTER_PAGE_URL,
@@ -28,6 +29,8 @@ class MasterPage(Spider):
         filename = f"quotes-{page}.html"
         Path(filename).write_bytes(response.body)
         self.log(f"Saved file {filename}")
+
+
 # %%
 
 
@@ -37,19 +40,20 @@ soup = BeautifulSoup(get(MASTER_PAGE_URL).text, "html.parser")
 
 # extract the youtube URL from the json object in soup
 
-yt_vid = soup.find('div', class_='sqs-block-video')
+yt_vid = soup.find("div", class_="sqs-block-video")
 # %%
 
-yt_json = yt_vid.attrs['data-block-json']
+yt_json = yt_vid.attrs["data-block-json"]
 
 # %%
+
 
 # extract the youtube URL from the json object in soup
 def extract_url_from_json(json_data):
     url_element = None
     try:
         data = json.loads(json_data)
-        url_element = data.get('url')
+        url_element = data.get("url")
     except json.JSONDecodeError:
         print("Invalid JSON format")
 

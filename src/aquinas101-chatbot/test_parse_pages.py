@@ -1,4 +1,3 @@
-
 # import the functions to test
 from parse_pages import get_page, get_soup, get_youtube_url, get_urls
 
